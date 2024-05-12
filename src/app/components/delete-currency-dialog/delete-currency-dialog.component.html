@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Delete Currency</h2>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Select currency</mat-label>
+    <mat-select [(value)]="selectedCurrency">
+      <mat-option *ngFor="let currency of currencies" [value]="currency">
+        {{ currency }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field></div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="onDeleteClick()" color="warn">Delete</button>
+</div>

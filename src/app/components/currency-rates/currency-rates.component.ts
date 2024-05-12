@@ -55,9 +55,8 @@ export class CurrencyRatesComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.currencyService.getPrevCurrencyData().subscribe(prevRates => {
-      this.previousCurrencyRates = prevRates.rates
-      console.log(prevRates.rates)
+    this.currencyService.getPrevCurrencyData().subscribe(previousCurrencyRates => {
+      this.previousCurrencyRates = previousCurrencyRates.rates
     })
 
     this.updateDateTime()
@@ -69,8 +68,7 @@ export class CurrencyRatesComponent implements OnInit {
       const formattedNewRates = Object.entries(newCurrencyRates).map(([currency, rate]) => ({ currency, rate }));
 
       formattedNewRates.forEach(({ currency, rate }) => {
-        const rateFiveSecondsAgo = this.currencyRates.find((prevCurrency: any) => prevCurrency.currency === currency)?.rate;
-        console.log(rate, rateFiveSecondsAgo)
+        const rateFiveSecondsAgo = this.currencyRates.find((prevCurrency: any) => prevCurrency.currency === currency)?.rate
         if (rateFiveSecondsAgo && rate !== rateFiveSecondsAgo) {
           this.previousCurrencyRates[currency] = rateFiveSecondsAgo;
         }
