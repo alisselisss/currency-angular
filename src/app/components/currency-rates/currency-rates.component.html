@@ -1,0 +1,32 @@
+<div *ngIf="currencyRates" class="container">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <h2>Currency RUB</h2>
+    <div class="actions">
+      <button mat-icon-button color="primary" (click)="openAddCurrencyDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="openDeleteCurrencyDialog()">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="date">{{ currentDateTime }}</div>
+
+  <div class="currencies">
+    <div class="currency-header">
+      <div>Currency</div>
+      <div class="currency-value">Value (RUB)</div>
+    </div>
+
+    <div *ngFor="let rate of currencyRates" class="currency-item">
+      <div class="currency-name">{{ rate.currency }}</div>
+      <div class="currency-value">
+        <div>{{ (1 / rate.rate).toFixed(5) }}</div>
+        <div *ngIf="!previousCurrencyRates[rate.currency]">(0)</div>
+        <div *ngIf="(1 / rate.rate - 1 / previousCurrencyRates[rate.currency]) > 0"><span style="color: green">&nbsp;&uarr;</span> (+{{ (1 / rate.rate - 1 / previousCurrencyRates[rate.currency]).toFixed(5) }})</div>
+        <div *ngIf="(1 / rate.rate - 1 / previousCurrencyRates[rate.currency]) < 0"><span style="color: red">&nbsp;&darr;</span> ({{ (1 / rate.rate - 1 / previousCurrencyRates[rate.currency]).toFixed(5) }})</div>
+      </div>
+    </div>
+  </div>
+
+</div>
