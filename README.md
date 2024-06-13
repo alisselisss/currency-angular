@@ -1,4 +1,4 @@
-# Ядро
+# Currency Rates
 
 Этот проект был создан с помощью  [Angular CLI](https://github.com/angular/angular-cli) версии 17.3.7.
 
